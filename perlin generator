@@ -1,0 +1,30 @@
+float time = 0; // time variable used in Perlin Noise 
+
+void setup(){
+  // size of screen
+  size(1440,900); 
+}
+
+
+void draw() {
+  //initialise variables 
+  float x = 0; 
+  float a;
+  float R; 
+  
+  // draw mildly opaque purple rect. to fade background away
+  fill(104,37,214, 3);
+  rect(0, 0, width, height); 
+  // draw points as long as position is not off the screen
+  while (x<width) {
+    // point location dependent on noise and time
+    a = height * noise(x/800, time);
+    // colour changes depending on position of dot 
+    R = map(a, 450, 0, 100, 300); 
+    stroke(R, 0, 0); 
+    // draw the point 
+    point(x,a);
+    x = x + 1; 
+  }
+  time = time + 0.01;
+}
